@@ -1,0 +1,7 @@
+# IGNORE FILES FOR THE REPO
+
+*.class
+*.exe
+*.vscode
+*.idea
+*.o
