@@ -135,6 +135,15 @@ void handleCommands(char** arguments,int argc)
             {
                 printf("%s ",arguments[i]);
             }
-            printf(": command not found\nUse command: treasure for getting the list of available commands\n");
+            defaultOutput("");
     }
+}
+
+/**
+ * show default output for the no command
+ **/
+void defaultOutput(char* command)
+{
+    printf("%s: command not found\n",command);
+    printf("use: help for using other commands\n");
 }

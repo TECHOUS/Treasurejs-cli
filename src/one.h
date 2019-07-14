@@ -4,4 +4,13 @@ void oneLengthCommand(char**);
 
 void clearCommand();
 void exitCommand();
+
+void treasurecliInfo();
+void treasurecliSyntax();
+void treasurecliCommand();
+void treasurecliOption();
+void treasurecliSubOption(); 
+void treasurecliOther();
 void showAllCommands();
+
+void defaultOutput(char*);

@@ -7,3 +7,5 @@ int countArguments(char*);
 
 char** parseArguments(char*,int);
 void handleCommands(char**,int);
+
+void defaultOutput(char*);

@@ -12,3 +12,5 @@ void treasureInitCommand();
 void treasureRemoveCommand();
 void treasureHistoryCommand();
 void treasureListCommand();
+
+void showCurrentVersion();

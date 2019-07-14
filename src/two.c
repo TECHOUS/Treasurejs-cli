@@ -42,47 +42,19 @@ void handleTreasureCommand(int index,char** arguments)
     switch(firstChar)
     {
         case 'i':
-            if(strcmp(arguments[index],"init")==0)
-            {
-                treasureInitCommand();
-            }
-            else
-            {
-                printf("%s: command not found\nuse: help\n",arguments[index]);
-            }
+            strcmp(arguments[index],"init")==0 ? treasureInitCommand() : defaultOutput(arguments[index]);
             break;
         case 'r':
-            if(strcmp(arguments[index],"remove")==0)
-            {
-                treasureRemoveCommand();
-            }
-            else
-            {
-                printf("%s: command not found\nuse: help\n",arguments[index]);
-            }
+            strcmp(arguments[index],"remove")==0 ? treasureRemoveCommand() : defaultOutput(arguments[index]);
             break;
         case 'h':
-            if(strcmp(arguments[index],"history")==0)
-            {
-                treasureHistoryCommand();
-            }
-            else
-            {
-                printf("%s: sub command not found\nuse: help\n",arguments[index]);    
-            }
+            strcmp(arguments[index],"history")==0 ? treasureHistoryCommand() : defaultOutput(arguments[index]);
             break;
         case 'l':
-            if(strcmp(arguments[index],"list")==0)
-            {
-                treasureListCommand();
-            }
-            else
-            {
-                printf("%s: sub command not found\nuse: help\n",arguments[index]);
-            }
+            strcmp(arguments[index],"list")==0 ? treasureListCommand() : defaultOutput(arguments[index]);
             break;
         default:
-            printf("%s: command not found\nuse: help\n",arguments[index]);
+            defaultOutput(arguments[index]);
             break;
     }
 }
@@ -160,9 +132,15 @@ void treasureListCommand()
     printf("1.0\n\n");
 }
 
+/**
+ * handle the treasure options command
+ * 
+ * @param index
+ * @param arguments array
+ **/
 void handleTreasureOption(int index,char** arguments)
 {
-    char firstChar =    arguments[index][0];
+    char firstChar  =   arguments[index][0];
     char secondChar =   arguments[index][1];
     
     if(secondChar == '-')
@@ -175,28 +153,52 @@ void handleTreasureOption(int index,char** arguments)
     }
 }
 
+/**
+ * handle single hyphen option
+ * 
+ * @param index
+ * @param arguments
+ **/
 void handleSingleHypenOption(int index,char** arguments)
 {
     char secondChar = arguments[index][1];
+    switch(secondChar)
+    {
+        case 'v':
+            strcmp(arguments[index], "-v")==0 ? showCurrentVersion() : defaultOutput(arguments[index]); 
+            break;
+        default:
+            defaultOutput(arguments[index]);
+    }
 }
 
+/**
+ * handle double hyphen option
+ * 
+ * @param index
+ * @param arguments
+ **/
 void handleDoubleHypenOption(int index,char** arguments)
 {
     char thirdChar = arguments[index][2];
     switch(thirdChar)
     {
+        case 'c':
+            strcmp(arguments[index], "--current-version")==0 ? showCurrentVersion() :  defaultOutput(arguments[index]);
+            break;
         case 'h':
-            if(strcmp(arguments[index],"--help")==0)
-            {
-                showAllCommands();
-            }
-            else
-            {
-                printf("%s: option not found\nuse: help\n",arguments[index]);    
-            }
+            strcmp(arguments[index],"--help")==0 ? showAllCommands() : defaultOutput(arguments[index]);
             break;
         default:
-            printf("%s: option not found\nuse: help\n",arguments[index]);
+            defaultOutput(arguments[index]);
             break;
     }
+}
+
+/**
+ * shows the current version
+ **/
+void showCurrentVersion()
+{
+    printf("Current Version: 5.4.0\n");
 }
