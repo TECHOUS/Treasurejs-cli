@@ -1,27 +1,50 @@
 #include "module.h"
 
 /**
- * main function for cli
+ * function is the brain for this cli
  **/
 void Main()
 {
+    welcomeMessage();
     while(true)
     {
-        printCliToken();
+        printCliToken();                                    // prints the default character for the shell
 
         char clistring[100];
-        scanf("%[^\t\n]s",clistring);
+        scanf("%[^\t\n]s", clistring);                      // get a command string
         while(getchar()!='\n');
 
-        int argc = countArguments(clistring);
-        char **arguments = parseArguments(clistring,argc);
+        int argc = countArguments(clistring);               // count the total arguments in the entered command
+        char **arguments = parseArguments(clistring,argc);  // parse the command into arguments array
 
-        handleCommands(arguments,argc);
+        handleCommands(arguments,argc);                     // handles the command action
     }
 }
 
+void welcomeMessage(){
+    printf("%s",BDCYAN);
+    printf("  __________    __________    __________     __________     __________     ___    ___    __________    __________     \n");
+    printf(" /___   ___/|  /  ____   /|  / ________/|   /  ____   /|   /  _______/|   /  /   /  /|  /  ____   /|  / ________/|    \n");
+    printf(" |__/  / __|/ /  /___/  / / / /________|/  /  /   /  / /  /  /_______|/  /  /   /  / / /  /___/  / / / /________|/    \n");
+    printf("   /  / /    /  ___   _/ / / _____/|      /  /___/  / /  /______   /|   /  /   /  / / /  ___   _/ / / _____/|         \n");
+    printf("  /  / /    /  / \\ \\  \\_/ / /_____|/_    /  ____   / /  _|_____/  / /  /  /___/  / / /  / \\ \\  \\_/ / /_____|/_  \n");
+    printf(" /__/ /    /__/ / \\ \\__\\ /__________/|  /__/|  /__/ /  /_________/ /  /_________/ / /__/ / \\ \\__\\ /__________/| \n");
+    printf(" |__|/     |__|/   \\|__| |__________|/  |__|/  |__|/   |_________|/   |_________|/  |__|/   \\|__| |__________|/     \n");
+    printf("\n");
+
+    printf("\t\t\t       __________      ___           ____________  \n");
+    printf("\t\t\t      /  _______/|    /  /|         /____   ____/| \n");
+    printf("\t\t\t     /  / ______|/   /  / /         |___/  / ___|/ \n");
+    printf("\t\t\t    /  / /          /  / /             /  / /      \n");
+    printf("\t\t\t   /  /_/_____     /  /_/_____    ____/  /_/_      \n");
+    printf("\t\t\t  /__________/|   /__________/|  /__________/|     \n");
+    printf("\t\t\t  |__________|/   |__________|/  |__________|/     \n");
+
+    printf("%s\n", RESET);
+}
+
 /**
- * function for printing the cli token
+ * function prints the cli default token for the shell
  **/
 void printCliToken()
 {
@@ -61,7 +84,6 @@ int countArguments(char* clistring)
         i++;
     }
     argc++;
-
     return argc;
 }
 
@@ -70,14 +92,14 @@ int countArguments(char* clistring)
  * @param clistring input string
  * @return string array
  **/
-char** parseArguments(char* clistring,int argc)
+char** parseArguments(char* clistring, int argc)
 {            
-    bool parseflag=false;                                               // flag for parsing the string
-    register int i=0,j=0,k=0;                                           // register values for looping
-    char copy[30];                                                      // string needed for parsing
-    char **argv = (char**)malloc(sizeof(char *)*argc);                  // storing the arguments
+    bool parseflag=false;                                                   // flag for parsing the string
+    register int i=0,j=0,k=0;                                               // register values for looping
+    char copy[30];                                                          // string needed for parsing
+    char **argv = (char**)malloc(sizeof(char *)*argc);                      // storing the arguments
 
-    while(i<(strlen(clistring)+1))                                           // string parsing anf storing
+    while(i<(strlen(clistring)+1))                                          // string parsing anf storing
     {
         if(clistring[i]==' ' || clistring[i]=='\n' || clistring[i]=='\0')   // if character found while parsing
         {
@@ -95,13 +117,13 @@ char** parseArguments(char* clistring,int argc)
                 j=0;
             }
         }
-        else                                                            // if other char found
+        else                                                                // if other char found
         {
-            if(!parseflag)                                              // if flag gets false then change to true
+            if(!parseflag)                                                  // if flag gets false then change to true
             {
                 parseflag=true;
             }
-            copy[j] = clistring[i];                                     // storing the characters
+            copy[j] = clistring[i];                                         // storing the characters
             j++;
         }
         i++;
@@ -140,7 +162,7 @@ void handleCommands(char** arguments,int argc)
 }
 
 /**
- * show default output for the no command
+ * show default output for the incorrect command
  **/
 void defaultOutput(char* command)
 {

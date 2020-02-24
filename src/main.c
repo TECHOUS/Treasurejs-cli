@@ -1,4 +1,5 @@
 #include "main.h"
+#include "../lib/RAINBOW/C/rainbow.h"
 #include "one.c"
 #include "two.c"
 #include "three.c"
@@ -6,5 +7,5 @@
 
 int main()
 {
-    Main();
+    Main();             // main module function for calling
 }

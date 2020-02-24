@@ -1,6 +1,16 @@
 #include "one.h"
 
 /**
+ * ONE LENGTH COMMANDS
+ * - clear
+ * - exit
+ * - treasure
+ * - help
+ * - ls
+ * - cd
+ * - pwd
+ **/
+/**
  * handles single length commands
  * 
  * @param arguments
@@ -13,10 +23,16 @@ void oneLengthCommand(char** arguments)
     switch (firstChar)
     {
         case 'c':
-            strcmp(arguments[ARG_INDEX],"clear")==0 ? clearCommand() : defaultOutput(arguments[ARG_INDEX]);
+            handleSecondCharForC(arguments[ARG_INDEX]);
             break;
         case 'e':
             strcmp(arguments[ARG_INDEX],"exit")==0 ? exitCommand() : defaultOutput(arguments[ARG_INDEX]);
+            break;
+        case 'l':
+            strcmp(arguments[ARG_INDEX],"ls")==0 ? lsCommand() : defaultOutput(arguments[ARG_INDEX]) ;
+            break;
+        case 'p':
+            strcmp(arguments[ARG_INDEX],"pwd")==0 ? pwdCommand() : defaultOutput(arguments[ARG_INDEX]) ;
             break;
         case 't':
             strcmp(arguments[ARG_INDEX],"treasure")==0 ? treasurecliInfo() : defaultOutput(arguments[ARG_INDEX]);
@@ -44,6 +60,28 @@ void clearCommand()
 void exitCommand()
 {
     exit(0);
+}
+
+/**
+ * shows all the files in the folder
+ **/
+void lsCommand()
+{
+    system("ls");
+}
+
+/**
+ * remove back to root directory
+ **/
+void cdCommand(){
+    system("cd");
+}
+
+/**
+ * shows the current working directory
+ **/
+void pwdCommand(){
+    system("pwd");
 }
 
 /**
@@ -120,6 +158,9 @@ void treasurecliOther()
     printf("\ttreasure\n");
     printf("\tclear\n");
     printf("\texit\n");
+    printf("\tls\n");
+    printf("\tcd\n");
+    printf("\tpwd\n");
     printf("\n");
 }
 
@@ -134,4 +175,26 @@ void showAllCommands()
     treasurecliOption();
     treasurecliSubOption(); 
     treasurecliOther();   
+}
+
+
+/**
+ * this function handles the command:
+ *      - d
+ * c
+ *      - lear
+ **/
+void handleSecondCharForC(char* command){
+    char secondChar = command[1];
+    switch(secondChar){
+        case 'd':
+            strcmp(command,"cd")==0 ? cdCommand() : defaultOutput(command);
+            break;
+        case 'l':
+            strcmp(command,"clear")==0 ? clearCommand() : defaultOutput(command);
+            break;
+        default:
+            defaultOutput(command);
+            break;
+    }
 }

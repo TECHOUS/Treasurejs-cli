@@ -9,3 +9,4 @@ char** parseArguments(char*,int);
 void handleCommands(char**,int);
 
 void defaultOutput(char*);
+void welcomeMessage();

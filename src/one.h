@@ -4,6 +4,9 @@ void oneLengthCommand(char**);
 
 void clearCommand();
 void exitCommand();
+void lsCommand();
+void cdCommand();
+void pwdCommand();
 
 void treasurecliInfo();
 void treasurecliSyntax();
@@ -14,3 +17,5 @@ void treasurecliOther();
 void showAllCommands();
 
 void defaultOutput(char*);
+
+void handleSecondCharForC(char*);

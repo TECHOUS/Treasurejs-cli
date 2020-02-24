@@ -1,6 +1,20 @@
 #include "two.h"
 
 /**
+ * TWO LENGTH COMMANDS
+ * 
+ * - treasure init
+ * - treasure remove 
+ * - treasure history
+ * - treasure list
+ * treasure website
+ * 
+ * treasure -h
+ * treasure -help
+ * treasure -v
+ * treasure --current-version
+ **/
+/**
  * handles two string commands
  * 
  * @param arguments array
@@ -35,6 +49,7 @@ void twoLengthCommand(char** arguments)
  * treasure remove 
  * treasure history
  * treasure list
+ * treasure website
  **/
 void handleTreasureCommand(int index,char** arguments)
 {
@@ -52,6 +67,9 @@ void handleTreasureCommand(int index,char** arguments)
             break;
         case 'l':
             strcmp(arguments[index],"list")==0 ? treasureListCommand() : defaultOutput(arguments[index]);
+            break;
+        case 'w':
+            strcmp(arguments[index], "website")==0 ? treasureWebsiteCommand() : defaultOutput(arguments[index]);
             break;
         default:
             defaultOutput(arguments[index]);
@@ -133,6 +151,14 @@ void treasureListCommand()
 }
 
 /**
+ * this functions displays the treasure website information
+ **/
+void treasureWebsiteCommand(){
+    printf("Open: ");
+    printf("http://treasurejs.tk\n\n");
+}
+
+/**
  * handle the treasure options command
  * 
  * @param index
@@ -200,5 +226,5 @@ void handleDoubleHypenOption(int index,char** arguments)
  **/
 void showCurrentVersion()
 {
-    printf("Current Version: 5.4.0\n");
+    printf("%sCurrent Version: 5.4.0%s\n",BYELLOW,RESET);
 }
