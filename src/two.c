@@ -8,6 +8,7 @@
  * - treasure history
  * - treasure list
  * treasure website
+ * - treasure license
  * 
  * treasure -h
  * treasure -help
@@ -50,6 +51,7 @@ void twoLengthCommand(char** arguments)
  * treasure history
  * treasure list
  * treasure website
+ * treasure license
  **/
 void handleTreasureCommand(int index,char** arguments)
 {
@@ -66,7 +68,15 @@ void handleTreasureCommand(int index,char** arguments)
             strcmp(arguments[index],"history")==0 ? treasureHistoryCommand() : defaultOutput(arguments[index]);
             break;
         case 'l':
-            strcmp(arguments[index],"list")==0 ? treasureListCommand() : defaultOutput(arguments[index]);
+            if(strcmp(arguments[index],"list")==0){
+                treasureListCommand();
+            }else if(strcmp(arguments[index],"license")==0){
+                treasureLicenseCommand();
+            }else{
+                defaultOutput(arguments[index]);
+            }
+            // strcmp(arguments[index],"list")==0 ? treasureListCommand() : defaultOutput(arguments[index]);
+            // strcmp(arguments[index],"license")==0 ? treasureLicenseCommand() : defaultOutput(arguments[index]);
             break;
         case 'w':
             strcmp(arguments[index], "website")==0 ? treasureWebsiteCommand() : defaultOutput(arguments[index]);
@@ -120,34 +130,63 @@ void treasureHistoryCommand()
 void treasureListCommand()
 {
     printf("All Released Versions\n\n");
-    printf("5.4.0\n");
-    printf("5.3.0\n");
-    printf("5.2.0\n");
-    printf("5.1.0\n");
-    printf("5.0.0\n");
-    printf("4.7.0\n");
-    printf("4.6.0\n");
-    printf("4.5.0\n");
-    printf("4.4.0\n");
-    printf("4.3.0\n");
-    printf("4.2.0\n");
-    printf("4.1.0\n");
-    printf("4.0.0\n");
-    printf("3.7.0\n");
-    printf("3.6.0\n");
-    printf("3.5.0\n");
-    printf("3.4.0\n");
-    printf("3.3.0\n");
-    printf("3.2.0\n");
-    printf("3.1.0\n");
-    printf("3.0.0\n");
-    printf("2.5.0\n");
-    printf("2.4.0\n");
-    printf("2.3.0\n");
-    printf("2.2.0\n");
-    printf("2.1.0\n");
-    printf("2.0.0\n");
-    printf("1.0\n\n");
+    FILE *ptr;
+    ptr = fopen("release_notes.md","r");
+    if(ptr==NULL)
+    {
+        system("wget https://raw.githubusercontent.com/TechOUs/Treasure-js/master/release_notes.md");
+        ptr = fopen("release_notes.md","r");
+    }
+    char read[100];
+    while(!feof(ptr))
+    {
+        fgets(read,100,ptr);
+        bool endFlag = false;
+        bool print = false;
+        if(read[0]>=48 && read[0]<=57){
+            continue;
+        }
+        for(int i=0;i<strlen(read);i++){
+            if(read[i]==']'){
+                print=false;
+                endFlag = true;
+            }
+            if(print){
+                if(read[i]>=48 && read[i]<=57){
+                    printf("%s%c%s",BLGREEN, read[i], RESET);
+                }else{
+                    printf("%c", read[i]);
+                }
+            }
+            if(read[i]=='*'){
+                break;
+            }
+            else if(read[i]=='['){
+                print = true;
+            } 
+        }
+        if(endFlag){
+            printf("\n");
+        }
+    }
+    fclose(ptr);
+}
+
+void treasureLicenseCommand(){
+    FILE *ptr;
+    ptr = fopen("LICENSE","r");
+    if(ptr==NULL)
+    {
+        system("wget https://raw.githubusercontent.com/TechOUs/Treasure-js/master/LICENSE");
+        ptr = fopen("LICENSE","r");
+    }
+    char read[100];
+    while(!feof(ptr))
+    {
+        fgets(read,100,ptr);
+        printf("%s",read);
+    }
+    fclose(ptr);
 }
 
 /**
@@ -226,5 +265,42 @@ void handleDoubleHypenOption(int index,char** arguments)
  **/
 void showCurrentVersion()
 {
-    printf("%sCurrent Version: 5.4.0%s\n",BYELLOW,RESET);
+    FILE *ptr;
+    ptr = fopen("release_notes.md","r");
+    if(ptr==NULL)
+    {
+        system("wget https://raw.githubusercontent.com/TechOUs/Treasure-js/master/release_notes.md");
+        ptr = fopen("release_notes.md","r");
+    }
+    printf("%sCurrent Version: ",BYELLOW);
+    char read[100];
+    while(!feof(ptr))
+    {
+        fgets(read,100,ptr);
+        bool endFlag = false;
+        bool print = false;
+
+        for(int i=0;i<strlen(read);i++){
+            if(read[i]==']'){
+                print=false;
+                endFlag = true;
+            }
+            if(print){
+                if((read[i]>=48 && read[i]<=57) || read[i]=='.'){
+                    printf("%c", read[i]);
+                }
+            }
+            if(read[i]=='*'){
+                break;
+            }
+            else if(read[i]=='['){
+                print = true;
+            } 
+        }
+        if(endFlag){
+            printf("%s\n\n", RESET);
+            break;
+        }
+    }
+    fclose(ptr);
 }

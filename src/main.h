@@ -3,3 +3,9 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+
+/**
+ * global variables
+ **/
+#define $TCOLOR BYELLOW
+#define $TCLI "#"

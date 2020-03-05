@@ -48,8 +48,7 @@ void welcomeMessage(){
  **/
 void printCliToken()
 {
-    const char CLI[2] = "#";
-    printf("%s ",CLI);
+    printf("%s%s %s", $TCOLOR ,$TCLI, RESET);
 }
 
 /**

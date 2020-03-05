@@ -13,5 +13,6 @@ void treasureRemoveCommand();
 void treasureHistoryCommand();
 void treasureListCommand();
 void treasureWebsiteCommand();
+void treasureLicenseCommand();
 
 void showCurrentVersion();

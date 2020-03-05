@@ -1,5 +1,5 @@
-#include "main.h"
 #include "../lib/RAINBOW/C/rainbow.h"
+#include "main.h"
 #include "one.c"
 #include "two.c"
 #include "three.c"
