@@ -1,6 +1,16 @@
-# TREASURE JS CLI
-
-This cli is maintaining treasure js
+<p align="center">
+    <img src="docs/logo/logo.png" title="treasure api"/>
+    <h1 align="center">TREASURE JS CLI</h1>
+    <p align="center">Command Line Interface for maintaining Treasure Js Components</p>
+    <h4 align="center">
+       <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/techous/treasurejs-cli">
+        <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/techous/treasurejs-cli">
+        <img alt="GitHub" src="https://img.shields.io/github/license/techous/treasurejs-cli">
+        <a href="https://join.slack.com/t/techousworkspace/shared_invite/enQtODYzOTM4MDk3NzQ5LTEzMWY5Mjk1MjE3MzBiYWFiODA1YWRiMmUyYTVjNmZlMjM3MGZmZDczY2JkZGZkNmQzODg1Nzc2NGEwYWE1NTg">
+            <img alt="slack" src="https://img.shields.io/badge/slack-online-yellow">
+        </a>
+    </h4>
+</p>
 
 ## REQUIREMENTS
 
