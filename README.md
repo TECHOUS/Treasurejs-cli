@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="docs/logo/logo.png" title="treasure api"/>
+    <img src="docs/logo/logo.png" title="treasure js cli"/>
     <h1 align="center">TREASURE JS CLI</h1>
     <p align="center">Command Line Interface for maintaining Treasure Js Components</p>
     <h4 align="center">
@@ -50,3 +50,7 @@ bash build.bash
 ## CONTRIBUTION
 
 Details coming soon
+
+## LICENSE
+
+[MIT LICENSE](LICENSE)
